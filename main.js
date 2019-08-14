@@ -3,6 +3,10 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
 var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth,window.innerHeight);
+renderer.setClearColor('rgb(20,20,40)');
+
+//scene.fog = new THREE.FogExp2(0xffffff,0.1);
+
 document.body.appendChild(renderer.domElement);
 
 //-----------------------------Initiating Objects --------------------------------------------------------------
@@ -31,7 +35,7 @@ plane.name = 'plane';
 
 //---------------------------------Lights------------------------------------------------------------------------
 
-var ambientLight= getAmbientLight(1);
+var ambientLight= getAmbientLight(2);
 
 
 
@@ -47,7 +51,7 @@ scene.add(ambientLight);
 function getBox(l, w ,h)
 {
 	var geometry = new THREE.BoxGeometry(l,w,h);
-	var material = new THREE.MeshPhongMaterial({color:'rgb(0,0,255,0.2)', wireframe:box});
+	var material = new THREE.MeshPhongMaterial({color:'rgb(0,0,255,0.2)', wireframe:box,side:THREE.DoubleSide});
 	var box = new THREE.Mesh(geometry,material);
 
 	return box;
